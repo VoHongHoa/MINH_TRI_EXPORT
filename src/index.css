@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Custom scrollbar styles */
+.custom-scrollbar {
+  /* Set the maximum height or adjust as needed */
+  overflow-y: auto !important ;
+  overflow-x: auto !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #4F46E5 #F3F4F6 !important;
+  /* Adjust colors as needed */
+}
+
+/* Webkit (Chrome, Safari) scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4F46E5 !important;
+  /* Adjust color as needed */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #F3F4F6 !important;
+  /* Adjust color as needed */
+}
