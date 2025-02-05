@@ -132,17 +132,15 @@ const MTExportDataContent = () => {
 
   const handleWordTemplateUpload = (e: any) => {
     const file = e.target.files[0];
-    console.log("check file", file)
-    setWordTemplate(file);
-    // if (
-    //   file &&
-    //   file.type ===
-    //     "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    // ) {
-    //   setWordTemplate(file);
-    // } else {
-    //   alert("Vui lòng chọn file Word mẫu");
-    // }
+    if (
+      file &&
+      file.type ===
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ) {
+      setWordTemplate(file);
+    } else {
+      alert("Vui lòng chọn file Word mẫu");
+    }
   };
   const onClear = () => {
     form.resetFields(); // Xóa tất cả các giá trị trong form
@@ -195,125 +193,16 @@ const MTExportDataContent = () => {
           autoComplete="off"
         >
           <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item label="Bộ phận" name="BO_PHAN">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="ID" name="ID">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Mã nhân viên" name="MA_NV">
-                <Input />
-              </Form.Item>
-            </Col>
+            {columns.map((item: any) => {
+              return (
+                <Col span={8}>
+                  <Form.Item label={item.title} name={item.title}>
+                    <Input />
+                  </Form.Item>
+                </Col>
+              );
+            })}
           </Row>
-
-          <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item label="Họ lót" name="HO_LOT">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Tên" name="TEN">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Ngày sinh" name="NGAY_SINH">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item label="Tuổi" name="TUOI">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Giới tính" name="GIOI_TINH">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Cao" name="CAO">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item label="Nặng" name="NANG">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="BMI" name="BMI">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Mạch" name="MACH">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item label="Huyết áp" name="HUYET_AP">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Kết luận" name="KET_LUAN">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Loại sức khỏe" name="LOAI_SK">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={8}>
-              <Form.Item label="Bệnh nghề nghiệp" name="BNN">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Nhà máy" name="NHA_MAY">
-                <Input />
-              </Form.Item>
-            </Col>
-
-            <Col span={8}>
-              <Form.Item label="Nhóm" name="NHOM">
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-
           <Row>
             <Col span={8}>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
