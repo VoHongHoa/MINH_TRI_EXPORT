@@ -160,7 +160,7 @@ const MTExportDataContent = () => {
       const zip = new PizZip(templateData);
       const doc = new Docxtemplater(zip);
       // Điền dữ liệu vào template
-      const data = selectedRows.length > 0 ? selectedRows : dataSource;
+      const data = selectedRows.length > 0 ? processSelectedData(selectedRows) : processSelectedData(dataSource);
       doc.setData({ data });
       try {
         doc.render();
@@ -174,6 +174,36 @@ const MTExportDataContent = () => {
 
     readerTemplate.readAsBinaryString(wordTemplate);
   };
+
+  const processSelectedData = (data: any)=>{
+    if(data.length === 0){
+      return []
+    }
+    return data.map((item: any)=>{
+      return {
+        ...item,
+        BIRTHDAY: item.NAMSINH ? extractDate(item.NAMSINH) : extractDate(new Date().toString),
+        BNN: `${item.ID}-HH-TL`
+      }
+    })
+  }
+
+  function extractDate(dateString: any) {
+    // Chuyển đổi chuỗi thành đối tượng Date
+    const date = new Date(dateString.split("/").reverse().join("-"));
+
+    // Lấy ngày, tháng, năm
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Tháng bắt đầu từ 0
+    const year = date.getFullYear();
+
+    // Trả về đối tượng chứa ngày, tháng, năm
+    return {
+        NGAY: day,
+        THANG: month,
+        NAM: year
+    };
+}
 
   const hasSelected = selectedRowKeys.length > 0;
 
