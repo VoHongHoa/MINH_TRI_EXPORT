@@ -180,10 +180,15 @@ const MTExportDataContent = () => {
       return []
     }
     return data.map((item: any)=>{
+      const DOB = item.NAMSINH ? extractDate(item.NAMSINH) : extractDate(new Date().toString);
       return {
         ...item,
-        BIRTHDAY: item.NAMSINH ? extractDate(item.NAMSINH) : extractDate(new Date().toString),
-        BNN: `${item.ID}-HH-TL`
+        BNN: `${item.ID}-HH-TL`,
+        DOB_D: DOB.D,
+        DOB_M: DOB.M,
+        DOB_Y: DOB.Y,
+        FULLNAME: `${item.HO} ${item.TEN}`.toUpperCase()
+
       }
     })
   }
@@ -199,9 +204,9 @@ const MTExportDataContent = () => {
 
     // Trả về đối tượng chứa ngày, tháng, năm
     return {
-        NGAY: day,
-        THANG: month,
-        NAM: year
+        D: day,
+        M: month,
+        Y: year
     };
 }
 
